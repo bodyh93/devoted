@@ -1,0 +1,51 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=devoted.loc
+      - NGINX_PORT=80
+    volumes:
+      - './docker/nginx/default.conf:/etc/nginx/conf.d/default.conf'
+      - './:/var/www/devoted'
+      - './logs/nginx:/var/log/nginx'
+  php:
+    build:
+      context: .
+      dockerfile: './docker/php/Dockerfile'
+    container_name: php
+    working_dir: /var/www/devoted
+    volumes:
+      - './:/var/www/devoted'
+      - './docker/php/php.ini:/usr/local/etc/php/php.ini'
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_DATABASE: devoted
+      MARIADB_USER: root
+      MARIADB_ROOT_PASSWORD: root
+
+###> doctrine/doctrine-bundle ###
+  database:
+    image: postgres:${POSTGRES_VERSION:-16}-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      # You should definitely change the password in production
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+    volumes:
+      - database_data:/var/lib/postgresql/data:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/postgresql/data:rw
+###< doctrine/doctrine-bundle ###
+
+volumes:
+###> doctrine/doctrine-bundle ###
+  database_data:
+###< doctrine/doctrine-bundle ###

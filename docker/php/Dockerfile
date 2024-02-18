@@ -21,8 +21,6 @@ RUN set -eux; \
         pdo_mysql \
     ;
 
-CMD ["php-fpm"]
-
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
@@ -32,8 +30,6 @@ ENV APP_ENV=dev XDEBUG_MODE=off
 COPY docker/php/php.ini "$PHP_INI_DIR/php.ini"
 
 COPY --link composer.* symfony.* ./
-RUN set -eux; composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress
-
 COPY --link . ./
 RUN rm -Rf docker/
 
@@ -44,4 +40,11 @@ RUN set -eux; \
 	composer run-script post-install-cmd; \
 	chmod +x bin/console; sync;
 
+RUN set -eux; \
+    apk add --no-cache bash; \
+    curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash; \
+    apk add symfony-cli;
+
 WORKDIR /var/www/devoted
+CMD composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress;
+CMD ["php-fpm"]

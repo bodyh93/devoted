@@ -5,3 +5,6 @@
 /vendor
 /.idea
 /logs
+.phpunit.result.cache
+/phpunit.xml
+phpstan.neon

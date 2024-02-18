@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\JsonHash;
+use App\Entity\DataHash;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<JsonHash>
+ * @extends ServiceEntityRepository<DataHash>
  *
- * @method JsonHash|null find($id, $lockMode = null, $lockVersion = null)
- * @method JsonHash|null findOneBy(array $criteria, array $orderBy = null)
- * @method JsonHash[]    findAll()
- * @method JsonHash[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method DataHash|null find($id, $lockMode = null, $lockVersion = null)
+ * @method DataHash|null findOneBy(array $criteria, array $orderBy = null)
+ * @method DataHash[]    findAll()
+ * @method DataHash[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class JsonHashRepository extends ServiceEntityRepository
+class DataHashRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, JsonHash::class);
+        parent::__construct($registry, DataHash::class);
     }
 
 //    /**
-//     * @return JsonHash[] Returns an array of JsonHash objects
+//     * @return DataHash[] Returns an array of DataHash objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class JsonHashRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?JsonHash
+//    public function findOneBySomeField($value): ?DataHash
 //    {
 //        return $this->createQueryBuilder('j')
 //            ->andWhere('j.exampleField = :val')

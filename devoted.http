@@ -1,0 +1,43 @@
+GET devoted.loc/hash/c3544ab535ea3671dbdb7d4930be0bc87bd52bfe
+Accept: application/json
+###
+GET devoted.loc/hash/1152226c0c527ee3034a52263f398a84f8c33e2b
+Accept: application/json
+###
+GET devoted.loc/hash/f9c732adeee29cdb4467152fa9ae74d238a34bd1
+Accept: application/json
+###
+GET devoted.loc/hash/0502106f16a733e63f6d9a0c6f26d6ae30073b20
+Accept: application/json
+###
+GET devoted.loc/hash/asd
+Accept: application/json
+###
+GET devoted.loc/hash/0502106f16a733e63f6d9a0c6f26d6ae30073b21
+Accept: application/json
+
+###
+POST devoted.loc/
+Content-Type: application/json
+
+{"data": {"some data": "some shit"} }
+###
+POST devoted.loc/
+Content-Type: application/json
+
+{"data": "some shit" }
+###
+POST devoted.loc/
+Content-Type: application/json
+
+{"data": ["some shit", "some bullshit"]}
+###
+POST devoted.loc/
+Content-Type: application/json
+
+{"data": ["grysha", {"personazh": "mysha"}]}
+###
+POST devoted.loc/
+Content-Type: application/json
+
+{"data": "chuka" }
